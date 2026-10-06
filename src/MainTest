@@ -1,0 +1,48 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class MainTest {
+
+    @Test
+    public void testSumOddIndicesNormal() {
+        Main program = new Main();
+        // Масив: індекси 0 -> 5, 1 -> 10, 2 -> 15, 3 -> 20, 4 -> 25
+        // Непарні індекси: [1]=10, [3]=20. Очікувана сума = 30
+        int[] array = {5, 10, 15, 20, 25};
+        int expected = 30;
+        int actual = program.sumOddIndices(array);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSumOddIndicesWithNegativeNumbers() {
+        Main program = new Main();
+        // Масив: індекси 0 -> 1, 1 -> -5, 2 -> 3, 3 -> -10
+        // Непарні індекси: [1]=-5, [3]=-10. Очікувана сума = -15
+        int[] array = {1, -5, 3, -10};
+        int expected = -15;
+        int actual = program.sumOddIndices(array);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSumOddIndicesSingleElement() {
+        Main program = new Main();
+        // Масив з 1 елементом (індекс 0). Непарних індексів немає, сума має бути 0
+        int[] array = {100};
+        int expected = 0;
+        int actual = program.sumOddIndices(array);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSumOddIndicesEmptyArray() {
+        Main program = new Main();
+        // Перевірка обробки порожнього масиву (очікується виключення)
+        int[] array = {};
+        program.sumOddIndices(array);
+    }
+}
